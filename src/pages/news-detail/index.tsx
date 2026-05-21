@@ -30,7 +30,9 @@ export default function NewsDetailPage() {
       const detail = await getNewsDetail(id)
       setItem(detail)
       markRead(id)
-      markNewsRead(id).catch(() => undefined)
+      if (Taro.getStorageSync('token')) {
+        markNewsRead(id).catch(() => undefined)
+      }
     } finally {
       setLoading(false)
     }
@@ -38,6 +40,11 @@ export default function NewsDetailPage() {
 
   function handleFavorite() {
     if (!id) return
+    if (!Taro.getStorageSync('token')) {
+      Taro.showToast({ title: '请先登录后收藏', icon: 'none' })
+      return
+    }
+
     const nextActive = !active
     favoriteStore.setFavorite(id, nextActive)
     const request = nextActive ? favoriteNews(id) : unfavoriteNews(id)

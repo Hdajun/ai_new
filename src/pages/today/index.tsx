@@ -43,6 +43,11 @@ export default function TodayPage() {
   const displayDay = `${Number(calendarDay) || new Date().getDate()}`
 
   async function handleFavorite(id: string) {
+    if (!Taro.getStorageSync('token')) {
+      Taro.showToast({ title: '请先登录后收藏', icon: 'none' })
+      return
+    }
+
     const nextActive = !favorites.isFavorite(id)
     favorites.setFavorite(id, nextActive)
     try {
