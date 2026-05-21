@@ -1,0 +1,77 @@
+.page-header {
+  position: relative;
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+  gap: 24px;
+  padding: 34px 30px 22px;
+  overflow: hidden;
+}
+
+.page-header--visual {
+  min-height: 274px;
+  padding: 30px 32px 18px;
+}
+
+.page-header__brand {
+  display: block;
+  width: 150px;
+  height: 56px;
+  margin-bottom: 10px;
+}
+
+.page-header__title {
+  display: block;
+  color: #2b2926;
+  font-size: 62px;
+  font-weight: 900;
+  line-height: 1.1;
+  letter-spacing: 0;
+}
+
+.page-header__subtitle {
+  display: block;
+  margin-top: 16px;
+  color: #2f2d29;
+  font-size: 25px;
+  line-height: 1.45;
+}
+
+.page-header__extra {
+  flex: 0 0 auto;
+  margin-top: 74px;
+  padding: 8px 17px;
+  border: 1px solid #f0c99f;
+  border-radius: 999px;
+  background: #fff0dc;
+  color: #e2762f;
+  font-size: 24px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.page-header__image {
+  position: absolute;
+  right: 4px;
+  bottom: 0;
+  width: 272px;
+  height: 232px;
+  z-index: 0;
+}
+
+.page-header--image-large {
+  min-height: 292px;
+}
+
+.page-header--image-large .page-header__image {
+  right: -4px;
+  bottom: -2px;
+  width: 310px;
+  height: 258px;
+}
+
+.page-header--visual > view,
+.page-header--visual .page-header__extra {
+  position: relative;
+  z-index: 1;
+}

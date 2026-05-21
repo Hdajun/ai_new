@@ -1,0 +1,20 @@
+.favorite-button {
+  min-width: 82px;
+  height: 46px;
+  padding: 0 18px;
+  border: 2px solid #f0c99f;
+  border-radius: 999px;
+  background: #fff8ec;
+  color: #8a7c6f;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 42px;
+  text-align: center;
+  box-sizing: border-box;
+}
+
+.favorite-button--active {
+  border-color: #2fb89d;
+  color: #12856f;
+  background: #e8fff5;
+}

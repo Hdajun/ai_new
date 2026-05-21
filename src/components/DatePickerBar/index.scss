@@ -1,0 +1,29 @@
+.date-picker-bar {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin: 0 34px 22px;
+  padding: 0;
+  background: transparent;
+}
+
+.date-picker-bar__button {
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #e8fff5;
+  color: #12856f;
+  font-size: 25px;
+  font-weight: 800;
+  line-height: 1;
+}
+
+.date-picker-bar__button--disabled {
+  background: #f6efe6;
+  color: #b8afa3;
+}
+
+.date-picker-bar__date {
+  color: #29313d;
+  font-size: 27px;
+  font-weight: 800;
+}
