@@ -13,7 +13,7 @@ interface PageHeaderProps {
 export default function PageHeader({ title, subtitle, extra, image, imageSize = 'normal' }: PageHeaderProps) {
   return (
     <View className={`page-header ${image ? 'page-header--visual' : ''} ${image ? `page-header--image-${imageSize}` : ''}`}>
-      <View>
+      <View className='page-header__copy'>
         {image ? <Image className='page-header__brand' src={brandImage} mode='aspectFit' /> : null}
         <Text className='page-header__title'>{title}</Text>
         {subtitle ? <Text className='page-header__subtitle'>{subtitle}</Text> : null}

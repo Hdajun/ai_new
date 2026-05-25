@@ -13,6 +13,11 @@
   padding: 28px 32px 18px;
 }
 
+.page-header__copy {
+  position: relative;
+  z-index: 1;
+}
+
 .page-header__brand {
   display: block;
   width: 214px;
@@ -40,16 +45,21 @@
 }
 
 .page-header__extra {
-  flex: 0 0 auto;
-  margin-top: 74px;
-  padding: 8px 17px;
+  position: absolute;
+  right: 34px;
+  bottom: 20px;
+  z-index: 2;
+  display: flex;
+  align-items: center;
+  padding: 9px 18px;
   border: 1px solid #f0c99f;
   border-radius: 999px;
   background: #fff0dc;
   color: #e2762f;
-  font-size: 24px;
+  font-size: 22px;
   font-weight: 800;
   line-height: 1;
+  box-shadow: 0 8px 18px rgba(226, 118, 47, 0.12);
 }
 
 .page-header__image {
@@ -72,8 +82,8 @@
   height: 260px;
 }
 
-.page-header--visual > view,
-.page-header--visual .page-header__extra {
-  position: relative;
-  z-index: 1;
+.page-header--image-large .page-header__extra {
+  right: 100px;
+  top: 48px;
+  bottom: auto;
 }
