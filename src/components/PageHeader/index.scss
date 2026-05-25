@@ -9,21 +9,21 @@
 }
 
 .page-header--visual {
-  min-height: 274px;
-  padding: 30px 32px 18px;
+  min-height: 258px;
+  padding: 28px 32px 18px;
 }
 
 .page-header__brand {
   display: block;
-  width: 150px;
-  height: 56px;
-  margin-bottom: 10px;
+  width: 214px;
+  height: 80px;
+  margin-bottom: 16px;
 }
 
 .page-header__title {
   display: block;
   color: #2b2926;
-  font-size: 62px;
+  font-size: 50px;
   font-weight: 900;
   line-height: 1.1;
   letter-spacing: 0;
@@ -31,10 +31,12 @@
 
 .page-header__subtitle {
   display: block;
-  margin-top: 16px;
-  color: #2f2d29;
-  font-size: 25px;
+  max-width: 380px;
+  margin-top: 12px;
+  color: #4b4640;
+  font-size: 23px;
   line-height: 1.45;
+  font-weight: 600;
 }
 
 .page-header__extra {
@@ -52,22 +54,22 @@
 
 .page-header__image {
   position: absolute;
-  right: 4px;
-  bottom: 0;
-  width: 272px;
-  height: 232px;
+  right: 0;
+  bottom: 4px;
+  width: 292px;
+  height: 238px;
   z-index: 0;
 }
 
 .page-header--image-large {
-  min-height: 292px;
+  min-height: 276px;
 }
 
 .page-header--image-large .page-header__image {
-  right: -4px;
-  bottom: -2px;
-  width: 310px;
-  height: 258px;
+  right: -2px;
+  bottom: 2px;
+  width: 322px;
+  height: 260px;
 }
 
 .page-header--visual > view,

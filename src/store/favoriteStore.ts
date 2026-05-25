@@ -25,6 +25,11 @@ export function syncFavoriteIds(ids: string[]) {
   emit()
 }
 
+export function clearFavoriteIds() {
+  favoriteIds = new Set()
+  emit()
+}
+
 export function toggleFavorite(id: string) {
   setFavorite(id, !favoriteIds.has(id))
 }
@@ -50,6 +55,7 @@ export function useFavoriteStore() {
     favoriteCount: ids.length,
     isFavorite,
     setFavorite,
+    clearFavoriteIds,
     syncFavoriteIds,
     toggleFavorite
   }

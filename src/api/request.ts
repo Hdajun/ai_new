@@ -1,4 +1,5 @@
 import Taro from '@tarojs/taro'
+import { clearSessionState } from '@/store/sessionStore'
 
 type Method = 'GET' | 'POST' | 'PUT' | 'DELETE'
 
@@ -37,7 +38,7 @@ export async function request<T = unknown, D = unknown>(options: RequestOptions<
     })
 
     if (response.statusCode === 401) {
-      Taro.removeStorageSync('token')
+      clearSessionState()
       Taro.showToast({ title: '登录已过期', icon: 'none' })
       throw new Error('Unauthorized')
     }

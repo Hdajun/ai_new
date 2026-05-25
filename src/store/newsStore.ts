@@ -23,12 +23,17 @@ export function isRead(id: string) {
   return readIds.has(id)
 }
 
+export function clearReadIds() {
+  readIds = new Set()
+  emit()
+}
+
 export function withLocalNewsState<T extends NewsItem>(items: T[], favoriteIds: string[]) {
   const favoriteSet = new Set(favoriteIds)
   return items.map((item) => ({
     ...item,
-    isRead: readIds.has(item.id),
-    isFavorite: favoriteSet.has(item.id)
+    isRead: Boolean(item.isRead) || readIds.has(item.id),
+    isFavorite: Boolean(item.isFavorite) || favoriteSet.has(item.id)
   }))
 }
 
@@ -46,6 +51,7 @@ export function useNewsStore() {
   return {
     readIds: Array.from(readIds),
     readCount: readIds.size,
+    clearReadIds,
     isRead,
     markRead
   }

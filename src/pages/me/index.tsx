@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react'
+import { useDidShow } from '@tarojs/taro'
 import { Button, Image, Text, View } from '@tarojs/components'
 import { getMyStats } from '@/api/news'
 import PageHeader from '@/components/PageHeader'
@@ -37,9 +38,14 @@ export default function MePage() {
     loadStats()
   }, [userStore.isLoggedIn])
 
+  useDidShow(() => {
+    loadStats()
+  })
+
   const readCount = stats?.readCount ?? newsStore.readCount
   const favoriteCount = stats?.favoriteCount ?? favoriteStore.favoriteCount
   const streakDays = stats?.streakDays ?? 0
+  const displayName = userStore.isLoggedIn ? userStore.user?.nickname || '微信用户' : '未登录'
 
   return (
     <View className='page me-page'>
@@ -47,7 +53,7 @@ export default function MePage() {
       <View className='me-profile'>
         <Image className='me-profile__avatar' src={meAvatar} mode='aspectFill' />
         <View className='me-profile__copy'>
-          <Text className='me-profile__name'>{userStore.user?.nickname || '未登录'}</Text>
+          <Text className='me-profile__name'>{displayName}</Text>
           <Text className='me-profile__desc'>{userStore.isLoggedIn ? '已连接后端账号数据' : '登录后同步收藏与阅读状态'}</Text>
         </View>
         {userStore.isLoggedIn ? (
@@ -99,7 +105,7 @@ export default function MePage() {
         </View>
         <View className='me-list__item'>
           <Text>备案信息</Text>
-          <Text>hdajun.me 已完成 ICP，小程序需单独备案</Text>
+          <Text>小程序备案进行中</Text>
         </View>
       </View>
     </View>

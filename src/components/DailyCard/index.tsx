@@ -25,6 +25,18 @@ function parseSectionItems(content?: string): DailyContentItem[] {
   }
 }
 
+function renderSectionTitle(title: string) {
+  if (title.length === 4) {
+    return (
+      <>
+        <Text className='daily-card__section-title-line'>{title.slice(0, 2)}</Text>
+        <Text className='daily-card__section-title-line'>{title.slice(2)}</Text>
+      </>
+    )
+  }
+  return title
+}
+
 export default function DailyCard({ report }: DailyCardProps) {
   return (
     <View className='daily-card'>
@@ -39,7 +51,7 @@ export default function DailyCard({ report }: DailyCardProps) {
       <Text className='daily-card__summary'>{report.summary}</Text>
       {report.sections.map((section) => (
         <View className='daily-card__section' key={section.id}>
-          <Text className='daily-card__section-title'>{section.title}</Text>
+          <View className='daily-card__section-title'>{renderSectionTitle(section.title)}</View>
           <View className='daily-card__section-body'>
           {parseSectionItems(section.content).length > 0
             ? parseSectionItems(section.content).map((item, index) => (

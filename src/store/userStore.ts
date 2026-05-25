@@ -1,18 +1,7 @@
 import { useEffect, useState } from 'react'
 import Taro from '@tarojs/taro'
 import { wechatLogin } from '@/api/auth'
-import type { UserProfile } from '@/types/news'
-import { getStorage, setStorage } from '@/utils/storage'
-
-const USER_KEY = 'user_profile'
-
-let user = getStorage<UserProfile | null>(USER_KEY, null)
-const listeners = new Set<() => void>()
-
-function emit() {
-  setStorage(USER_KEY, user)
-  listeners.forEach((listener) => listener())
-}
+import { clearSessionState, getCurrentUser, setCurrentUser, subscribeUser } from '@/store/sessionStore'
 
 export function useUserStore() {
   const [, setVersion] = useState(0)
@@ -20,10 +9,7 @@ export function useUserStore() {
 
   useEffect(() => {
     const listener = () => setVersion((value) => value + 1)
-    listeners.add(listener)
-    return () => {
-      listeners.delete(listener)
-    }
+    return subscribeUser(listener)
   }, [])
 
   async function login() {
@@ -31,11 +17,10 @@ export function useUserStore() {
     try {
       const result = await wechatLogin()
       Taro.setStorageSync('token', result.token)
-      user = result.user
-      emit()
+      setCurrentUser(result.user)
       Taro.showToast({ title: '登录成功', icon: 'success' })
     } catch (error) {
-      Taro.removeStorageSync('token')
+      clearSessionState()
       Taro.showToast({ title: '登录失败', icon: 'none' })
     } finally {
       setLoading(false)
@@ -43,15 +28,13 @@ export function useUserStore() {
   }
 
   function logout() {
-    user = null
-    Taro.removeStorageSync('token')
-    emit()
+    clearSessionState()
   }
 
   return {
-    user,
+    user: getCurrentUser(),
     loading,
-    isLoggedIn: Boolean(user),
+    isLoggedIn: Boolean(getCurrentUser()),
     login,
     logout
   }

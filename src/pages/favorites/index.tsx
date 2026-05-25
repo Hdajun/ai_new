@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react'
-import Taro from '@tarojs/taro'
+import Taro, { useDidShow } from '@tarojs/taro'
 import { View } from '@tarojs/components'
 import { getFavoriteNews, unfavoriteNews } from '@/api/news'
 import EmptyState from '@/components/EmptyState'
@@ -51,6 +51,10 @@ export default function FavoritesPage() {
   useEffect(() => {
     loadFavorites()
   }, [userStore.isLoggedIn])
+
+  useDidShow(() => {
+    loadFavorites()
+  })
 
   const news = withLocalNewsState(items, favorites.favoriteIds)
 
