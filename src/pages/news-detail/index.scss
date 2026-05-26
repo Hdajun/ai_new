@@ -1,93 +1,152 @@
 .detail-page {
-  padding-top: 22px;
+  padding-top: 24px;
 }
 
-.detail-article {
-  margin: 0 28px 22px;
-  padding: 30px 26px;
-  border: 2px solid #f4debe;
-  border-radius: 18px;
-  background: #fffdf7;
+.detail-card {
+  position: relative;
+  margin: 0 28px 24px;
+  padding: 28px 26px 30px;
+  border: 2px solid #f3d9b4;
+  border-radius: 22px;
+  background: #fffdf8;
   box-shadow: 0 14px 30px rgba(161, 119, 67, 0.1);
+  overflow: hidden;
 }
 
-.detail-article__meta {
+.detail-card::before {
+  position: absolute;
+  top: 18px;
+  right: 22px;
+  width: 54px;
+  height: 54px;
+  border-radius: 18px;
+  background: #fff0b8;
+  box-shadow: 16px 18px 0 #dff6ed;
+  content: '';
+}
+
+.detail-card__top {
+  position: relative;
+  z-index: 1;
   display: flex;
-  align-items: center;
+  align-items: flex-start;
   justify-content: space-between;
   gap: 20px;
-  color: #12856f;
-  font-size: 24px;
-  font-weight: 800;
 }
 
-.detail-article__category {
-  padding: 7px 13px;
+.detail-card__eyebrow {
+  display: block;
+  width: max-content;
+  padding: 8px 16px;
   border-radius: 999px;
   background: #e8fff5;
-  line-height: 1;
-}
-
-.detail-article__time {
-  display: inline-block;
-  flex: 0 0 auto;
-  margin-left: auto;
-  padding: 7px 12px;
-  border-radius: 999px;
-  background: #ffe9d6;
-  color: #c96836;
+  color: #12856f;
   font-size: 23px;
-  font-weight: 800;
+  font-weight: 900;
   line-height: 1;
 }
 
-.detail-article__title {
+.detail-card__category {
   display: block;
-  margin-top: 22px;
-  color: #29313d;
+  margin-top: 14px;
+  color: #7b6f63;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+}
+
+.detail-card__time {
+  position: relative;
+  z-index: 1;
+  flex: 0 0 auto;
+  padding: 8px 14px;
+  border-radius: 999px;
+  background: #fff0dc;
+  color: #d97833;
+  font-size: 23px;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.detail-card__title {
+  position: relative;
+  z-index: 1;
+  display: block;
+  margin-top: 26px;
+  color: #252a31;
   font-size: 40px;
-  font-weight: 800;
-  line-height: 1.4;
+  font-weight: 900;
+  line-height: 1.38;
+  letter-spacing: 0;
 }
 
-.detail-article__summary {
+.detail-card__note {
+  margin-top: 24px;
+  padding: 22px 22px 24px;
+  border: 2px dashed #ffd08e;
+  border-radius: 18px;
+  background: #fff8e9;
+}
+
+.detail-card__note-title,
+.detail-card__body-title {
   display: block;
-  margin-top: 20px;
-  padding: 18px 18px;
-  border-left: 8px solid #ffb45d;
-  border-radius: 12px;
-  background: #fff8ec;
-  color: #5d6570;
-  font-size: 29px;
-  line-height: 1.58;
+  width: max-content;
+  padding: 8px 16px;
+  border-radius: 999px;
+  background: #fff1b9;
+  color: #8a5f11;
+  font-size: 24px;
+  font-weight: 900;
+  line-height: 1;
 }
 
-.detail-article__source {
+.detail-card__summary {
+  display: block;
+  margin-top: 16px;
+  color: #5b6470;
+  font-size: 29px;
+  line-height: 1.6;
+}
+
+.detail-card__source {
   display: flex;
   flex-wrap: wrap;
   gap: 12px;
-  margin-top: 24px;
+  margin-top: 22px;
   color: #8a7c6f;
   font-size: 24px;
 }
 
-.detail-article__source-name,
-.detail-article__tag {
-  padding: 6px 12px;
+.detail-card__source-name,
+.detail-card__tag {
+  padding: 7px 13px;
   border-radius: 999px;
-  background: #f5efe5;
-  font-weight: 700;
+  background: #f6efe4;
+  font-weight: 800;
+  line-height: 1.1;
 }
 
-.detail-article__tag {
+.detail-card__tag {
   background: #e8fff5;
   color: #12856f;
 }
 
-.detail-article__content {
+.detail-card__body {
+  margin-top: 28px;
+  padding-top: 24px;
+  border-top: 2px solid #f5e3c8;
+}
+
+.detail-card__body-title {
+  background: #e8fff5;
+  color: #12856f;
+}
+
+.detail-card__content {
   display: block;
-  margin-top: 30px;
-  color: #29313d;
+  margin-top: 18px;
+  color: #30363d;
   font-size: 30px;
   line-height: 1.72;
 }
@@ -96,19 +155,19 @@
   display: flex;
   align-items: center;
   gap: 18px;
-  margin: 0 28px 36px;
+  margin: 0 28px 38px;
 }
 
 .detail-actions__button {
   flex: 1;
-  height: 62px;
+  height: 64px;
   margin: 0;
-  border: 2px solid #bfe8d4;
+  border: 2px solid #ffd7a7;
   border-radius: 999px;
-  background: #e8fff5;
-  color: #15845f;
+  background: #fff6e8;
+  color: #9a6330;
   font-size: 26px;
-  font-weight: 700;
-  line-height: 58px;
-  box-shadow: 0 8px 16px rgba(47, 166, 117, 0.1);
+  font-weight: 800;
+  line-height: 60px;
+  box-shadow: 0 8px 16px rgba(190, 130, 65, 0.1);
 }

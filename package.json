@@ -2,7 +2,7 @@
   "name": "AI_NEWS",
   "version": "1.0.0",
   "private": true,
-  "description": "实时获取AI资讯的小程序",
+  "description": "AI小报小程序",
   "templateInfo": {
     "name": "default",
     "typescript": true,

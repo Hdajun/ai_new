@@ -63,7 +63,7 @@ export default function FavoritesPage() {
       <PageHeader title='收藏' subtitle='你收藏的精华内容' extra={`${news.length} 条`} image={favHeroRobot} imageSize='large' />
       {loading ? <SkeletonList /> : null}
       {!loading && !userStore.isLoggedIn ? <EmptyState title='登录后查看收藏' description='请先在“我的”页面完成微信登录。' /> : null}
-      {!loading && userStore.isLoggedIn && news.length === 0 ? <EmptyState title='还没有收藏' description='在资讯卡片或详情页点击收藏后，会出现在这里。' /> : null}
+      {!loading && userStore.isLoggedIn && news.length === 0 ? <EmptyState title='还没有收藏' description='在条目卡片或详情页点击收藏后，会出现在这里。' /> : null}
       {!loading ? news.map((item) => <NewsCard item={item} key={item.id} onFavorite={removeFavorite} />) : null}
     </View>
   )

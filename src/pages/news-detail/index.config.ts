@@ -1,4 +1,4 @@
 export default definePageConfig({
-  navigationBarTitleText: '资讯详情',
+  navigationBarTitleText: '小报条目',
   enableShareAppMessage: true
 })

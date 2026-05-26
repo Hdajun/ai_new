@@ -9,6 +9,7 @@ import { getCategoryLabel } from '@/constants/categories'
 import { isFavorite, useFavoriteStore } from '@/store/favoriteStore'
 import { markRead } from '@/store/newsStore'
 import type { NewsItem } from '@/types/news'
+import { auditSafeText } from '@/utils/auditText'
 import { formatTime } from '@/utils/format'
 import './index.scss'
 
@@ -53,7 +54,7 @@ export default function NewsDetailPage() {
 
   function copyOriginalUrl() {
     if (!item?.originalUrl) {
-      Taro.showToast({ title: '暂无原文链接', icon: 'none' })
+      Taro.showToast({ title: '暂无来源链接', icon: 'none' })
       return
     }
     Taro.setClipboardData({ data: item.originalUrl })
@@ -64,7 +65,7 @@ export default function NewsDetailPage() {
   }, [id])
 
   useShareAppMessage(() => ({
-    title: item?.title || 'AI 简报',
+    title: auditSafeText(item?.title) || 'AI 小报',
     path: `/pages/news-detail/index?id=${id}`
   }))
 
@@ -79,35 +80,44 @@ export default function NewsDetailPage() {
   if (!item) {
     return (
       <View className='page'>
-        <EmptyState title='没有找到这条资讯' description='可能已经被移除，返回列表看看别的内容。' />
+        <EmptyState title='没有找到这条内容' description='可能已经被移除，返回列表看看别的内容。' />
       </View>
     )
   }
 
   return (
     <View className='page detail-page'>
-      <View className='detail-article'>
-        <View className='detail-article__meta'>
-          <Text className='detail-article__category'>{getCategoryLabel(item.category)}</Text>
-          <Text className='detail-article__time'>{formatTime(item.publishedAt)}</Text>
+      <View className='detail-card'>
+        <View className='detail-card__top'>
+          <View>
+            <Text className='detail-card__eyebrow'>AI 小报</Text>
+            <Text className='detail-card__category'>{getCategoryLabel(item.category)}</Text>
+          </View>
+          <Text className='detail-card__time'>{formatTime(item.publishedAt)}</Text>
         </View>
-        <Text className='detail-article__title'>{item.title}</Text>
-        <Text className='detail-article__summary'>{item.summary}</Text>
-        <View className='detail-article__source'>
-          <Text className='detail-article__source-name'>{item.sourceName}</Text>
+        <Text className='detail-card__title'>{auditSafeText(item.title)}</Text>
+        <View className='detail-card__note'>
+          <Text className='detail-card__note-title'>小报摘要</Text>
+          <Text className='detail-card__summary'>{auditSafeText(item.summary)}</Text>
+        </View>
+        <View className='detail-card__source'>
+          <Text className='detail-card__source-name'>{auditSafeText(item.sourceName)}</Text>
           {item.tags.map((tag) => (
-            <Text className='detail-article__tag' key={tag}>
-              {tag}
+            <Text className='detail-card__tag' key={tag}>
+              {auditSafeText(tag)}
             </Text>
           ))}
         </View>
-        <Text className='detail-article__content'>{item.content}</Text>
+        <View className='detail-card__body'>
+          <Text className='detail-card__body-title'>完整记录</Text>
+          <Text className='detail-card__content'>{auditSafeText(item.content)}</Text>
+        </View>
       </View>
 
       <View className='detail-actions'>
         <FavoriteButton active={favoriteStore.isFavorite(id)} onClick={handleFavorite} />
         <Button className='detail-actions__button' onClick={copyOriginalUrl}>
-          复制原文链接
+          复制来源链接
         </Button>
       </View>
     </View>

@@ -3,6 +3,7 @@ import { Text, View } from '@tarojs/components'
 import FavoriteButton from '@/components/FavoriteButton'
 import ReadBadge from '@/components/ReadBadge'
 import type { NewsItem } from '@/types/news'
+import { auditSafeText } from '@/utils/auditText'
 import { formatTime } from '@/utils/format'
 import './index.scss'
 
@@ -22,12 +23,12 @@ export default function NewsCard({ item, onFavorite }: NewsCardProps) {
         <Text className='news-card__category-icon'>AI</Text>
       </View>
       <View className='news-card__content'>
-        <Text className='news-card__title'>{item.title}</Text>
-        <Text className='news-card__summary'>{item.summary}</Text>
+        <Text className='news-card__title'>{auditSafeText(item.title)}</Text>
+        <Text className='news-card__summary'>{auditSafeText(item.summary)}</Text>
       </View>
       <View className='news-card__meta'>
         <View className='news-card__source'>
-          <Text>来源：{item.sourceName}</Text>
+          <Text>来源：{auditSafeText(item.sourceName)}</Text>
           <ReadBadge read={item.isRead} />
         </View>
         <Text className='news-card__time'>{formatTime(item.publishedAt)}</Text>

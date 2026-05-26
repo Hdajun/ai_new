@@ -8,6 +8,7 @@ import EmptyState from '@/components/EmptyState'
 import type { TodayNewsResponse } from '@/types/news'
 import { useFavoriteStore } from '@/store/favoriteStore'
 import { withLocalNewsState } from '@/store/newsStore'
+import { auditSafeText } from '@/utils/auditText'
 import todayBrand from '@/assets/ued/today-brand-cut.png'
 import todayCalendar from '@/assets/ued/today-calendar-card-tight.png'
 import todayHeroRobot from '@/assets/ued/today-hero-robot-cut.png'
@@ -89,18 +90,18 @@ export default function TodayPage() {
               <Text className='today-summary__label'>每日AI摘要</Text>
               <Text className='today-summary__button'>一键速览</Text>
             </View>
-            <Text className='today-summary__text'>{today.summary}</Text>
+            <Text className='today-summary__text'>{auditSafeText(today.summary)}</Text>
           </View>
         </View>
       ) : null}
       {!loading ? (
         <View className='today-section-title'>
-          <Text>今日AI快讯</Text>
+          <Text>今日AI动态</Text>
           <Text className='today-section-title__all'>全部</Text>
         </View>
       ) : null}
       {loading ? <SkeletonList /> : null}
-      {!loading && items.length === 0 ? <EmptyState title='暂无资讯' description='下拉刷新试试。' /> : null}
+      {!loading && items.length === 0 ? <EmptyState title='暂无内容' description='下拉刷新试试。' /> : null}
       {!loading
         ? items.map((item) => <NewsCard item={item} key={item.id} onFavorite={handleFavorite} />)
         : null}
